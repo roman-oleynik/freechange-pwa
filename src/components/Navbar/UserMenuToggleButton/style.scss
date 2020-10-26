@@ -1,0 +1,56 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.Navbar__User-Menu {
+    position: relative;
+    @include flex(row, space-between, center);
+    cursor: pointer;
+    box-sizing: border-box;
+    border: $thin-border-px solid transparent;
+    background: $dark;
+    outline: none;
+
+    .Navbar__User-Menu-Avatar-Container {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        border: $x-thick-border-px solid $pink;
+        overflow: hidden;
+    }
+    .Navbar__User-Menu-Avatar-Null {
+        height: 30px;
+        width: 30px;
+        @include flex(row, center, center);
+        background: $gold;
+        font-weight: bold;
+        color: $white;
+    }
+}
+.Navbar__User-Menu:hover {
+    background: $dark;    
+}
+.Navbar__User-Menu:focus {
+    border: $thin-border-px solid $pink;
+}
+
+@media (min-width: 1200px) {
+    .Navbar__User-Menu {
+        border: $thin-border-vw solid transparent;
+
+        .Navbar__User-Menu-Avatar-Container {
+            height: 40 * 1vw / 12;
+            width: 40 * 1vw / 12;
+            border: $x-thick-border-vw solid $pink;
+        }
+        .Navbar__User-Menu-Avatar-Null {
+            height: 40 * 1vw / 12;
+            width: 40 * 1vw / 12;
+        }
+    }
+    .Navbar__User-Menu:hover {
+        background: $dark;    
+    }
+    .Navbar__User-Menu:focus {
+        border: $thin-border-vw solid $pink;
+    }
+}

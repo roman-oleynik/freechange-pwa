@@ -8,11 +8,12 @@
 // You can also remove this file if you'd prefer not to use a
 // service worker, and the Workbox build step will be skipped.
 
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { clientsClaim } from 'workbox-core';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
 import { registerRoute } from 'workbox-routing';
-import { StaleWhileRevalidate } from 'workbox-strategies';
+import { StaleWhileRevalidate, CacheFirst, NetworkFirst } from 'workbox-strategies';
 
 declare const self: ServiceWorkerGlobalScope;
 
@@ -57,7 +58,7 @@ registerRoute(
 // precache, in this case same-origin .png requests like those from in public/
 registerRoute(
   // Add in any other file extensions or routing criteria as needed.
-  ({ url }) => url.origin === self.location.origin && url.pathname.endsWith('.png'),
+  /\.(?:png|gif|jpg|jpeg|svg)$/,
   // Customize this strategy as needed, e.g., by changing to CacheFirst.
   new StaleWhileRevalidate({
     cacheName: 'images',
@@ -67,6 +68,44 @@ registerRoute(
       new ExpirationPlugin({ maxEntries: 50 }),
     ],
   })
+);
+
+self.addEventListener('fetch', (event) => {
+  if (event.request.url.startsWith('https://freechange.firebaseio.com/')) {
+    const cacheName = "things";
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          const cloneOfRes = res.clone();
+          caches.open(cacheName)
+            .then(cache => {
+              cache.put(event.request, cloneOfRes)
+            });
+          return res;
+        })
+        .catch(err => (caches.match(event.request).then(res => res)) as Promise<Response>)
+    );
+  }
+  if (event.request.url.startsWith('https://firebasestorage.googleapis.com')) {
+    const cacheName = "thingsAvatars";
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          const cloneOfRes = res.clone();
+          caches.open(cacheName)
+            .then(cache => {
+              cache.put(event.request, cloneOfRes)
+            });
+          return res;
+        })
+        .catch(err => (caches.match(event.request).then(res => res)) as Promise<Response>)
+    );
+  }
+});
+registerRoute(
+  ({url}) => url.origin === 'https://fonts.googleapis.com' ||
+             url.origin === 'https://fonts.gstatic.com',
+  new CacheFirst({ cacheName: "fonts" }),
 );
 
 // This allows the web app to trigger skipWaiting via

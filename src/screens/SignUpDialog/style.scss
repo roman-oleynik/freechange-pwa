@@ -1,0 +1,49 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+.Sign-Up {
+    .Sign-Up__Inputs {
+        width: 100%;
+        padding: $side-padding-px;
+    }
+    .Sign-Up__Question {
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-size: $small-fz-px;
+        color: $dark;
+        padding-bottom: $side-padding-px;
+        .Sign-Up__Link {
+            color: $orange;
+            font-size: $small-fz-px;
+            text-decoration: underline;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            transition: .3s;
+            outline: none;
+        }
+        .Sign-Up__Link:hover {
+            color: $lightseagreen;
+            transition: .3s;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .Sign-Up {
+        .Sign-Up__Inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-column-gap: $side-padding-px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .Sign-Up {
+        .Sign-Up__Inputs {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+}

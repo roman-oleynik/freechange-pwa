@@ -1,0 +1,34 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+.Standard-Label {
+    width: 100%;
+    @include flex(column, flex-start, flex-start);
+    font-size: $x-small-fz-px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: $dark;
+
+    .Standard-Input {
+        width: 100%;
+        background: transparent;
+        padding: $input-padding;
+        border: $thick-border-px solid $dark;
+        border-radius: $default-border-radius;
+        outline: none;
+        color: $dark;
+    }
+    .Standard-Input_Error {
+        border: $thick-border-px solid $tomato;
+    }
+    .Standard-Input:focus {
+        border: $thick-border-px solid $orange;
+    }
+}
+.Validation-Error-Text {
+    color: $tomato;
+    font-size: $x-small-fz-px;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}

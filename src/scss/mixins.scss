@@ -1,0 +1,29 @@
+@import './variables.scss';
+
+@mixin flex($direction: row, $j-content: flex-start, $a-items: stretch, $wrap: nowrap) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $j-content;
+    align-items: $a-items;
+    flex-wrap: $wrap;
+}
+
+
+@mixin side-padding($x: $side-padding-px) {
+    padding-left: $x;
+    padding-right: $x;
+}
+
+
+@mixin absolute-position-center-alignment() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@media (min-width: 1200px) {
+    @mixin side-padding($x: $side-padding-vw) {
+        padding-left: $x;
+        padding-right: $x;
+    }
+}

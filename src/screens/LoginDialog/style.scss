@@ -1,0 +1,46 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+
+.Login {
+    .Login__Inputs {
+        @include flex(column, flex-start, center);
+        width: 100%;
+        padding: $side-padding-px;
+    }
+    
+    .Login__Question {
+        width: 100%;
+        display: block;
+        text-align: center;
+        font-size: $small-fz-px;
+        color: $dark;
+        padding-bottom: $side-padding-px;
+        .Login__Link {
+            color: $orange;
+            font-size: $small-fz-px;
+            text-decoration: underline;
+            border: 0;
+            background: transparent;
+            cursor: pointer;
+            transition: .3s;
+            outline: none;
+        }
+        .Login__Link:hover {
+            color: $lightseagreen;
+            transition: .3s;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .Login {
+        .Login__Inputs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: $side-padding-px;
+            width: 100%;
+        }
+    }
+}
+

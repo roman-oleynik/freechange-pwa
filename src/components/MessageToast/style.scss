@@ -1,0 +1,31 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+$message-toast-padding-px: 5px;
+$message-toast-padding-vw: 0.4px;
+
+.Message-Toast {
+    position: fixed;
+    bottom: 20px;
+    left: 30px;
+    right: 30px;
+    background: $lightseagreen;
+    color: $white;
+    @include flex(row, center, center);    
+    font-size: $small-fz-px;
+    text-align: center;
+    padding: $message-toast-padding-px;
+    border-radius: $default-border-radius;
+
+    animation: fadeInOut 2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}

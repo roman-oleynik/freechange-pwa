@@ -1,0 +1,67 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+
+$logo-fz-px: 20px;
+$logo-fz-vw: 2vw;
+$nav-link-fz-px: 14px;
+$nav-link-fz-vw: 1.4vw;
+$nav-link-margin-right-px: 40px;
+$nav-link-margin-right-vw: 40 * 1vw / 12;
+$border-of-active-nav-link-px: 2px;
+$border-of-active-nav-link-vw: 2 * 1vw / 12;
+
+.Navbar {
+    position: fixed;
+    height: $navbar-height-px;
+    width: 100%;
+    background: $dark;
+    @include side-padding(20px);
+    @include flex(row, space-between, center);
+    z-index: 10;
+
+    .Navbar__Title {
+        font-size: $logo-fz-px;
+        margin: 0;
+        color: $white;
+    }
+    .Navbar__Links {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .Navbar {
+        .Navbar__Links {
+            @include absolute-position-center-alignment();
+            @include flex();
+            .Navbar__Link {
+                margin-right: $nav-link-margin-right-px;
+                font-size: $nav-link-fz-px;
+                color: $white;
+            }
+            .Navbar__Link_Active {
+                margin-right: $nav-link-margin-right-px;
+                font-size: $nav-link-fz-px;
+                color: $pink;
+            }
+        }
+    }
+}
+
+@media (min-width: 1200px) {
+    .Navbar {
+        height: $navbar-height-vw;
+        @include side-padding(20 * 1vw / 12);
+
+        .Navbar__Title {
+            font-size: $logo-fz-vw;
+        }
+        .Navbar__Links {
+            .Navbar__Link {
+                margin-right: $nav-link-margin-right-vw;
+                font-size: $nav-link-fz-vw;
+            }
+        }
+    }
+}

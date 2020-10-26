@@ -1,0 +1,14 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.Carousel {
+    @include flex(column, flex-start, center);
+    overflow: hidden;
+    
+    .Carousel__Empty-Space {
+        @include flex(row, center, center);
+        height: 400px;
+        width: 400px;
+        border: $thin-border-px solid $dark;
+    }
+}

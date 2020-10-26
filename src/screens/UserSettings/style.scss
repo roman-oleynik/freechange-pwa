@@ -1,0 +1,31 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+
+.User-Settings__Content {
+    @include flex(row, center, center, wrap);
+    grid-gap: 40px;
+
+    .User-Settings__Inputs {
+        max-width: 500px;
+        min-width: 260px;
+
+        @include flex(row, space-around, flex-start, wrap);
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .User-Settings__Content {
+        @include flex(row, center, center, wrap);
+        grid-gap: 40px;
+
+        .User-Settings__Inputs {
+            max-width: 500px;
+            min-width: 260px;
+
+            @include flex(row, space-around, flex-start, wrap);
+        }
+    }
+}
+

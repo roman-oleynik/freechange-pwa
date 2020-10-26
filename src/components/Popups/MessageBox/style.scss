@@ -1,0 +1,46 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.Message-Box-Container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: rgba(0,0,0,0.5);
+    @include flex(row, center, center);
+    z-index: 3;
+
+    .Message-Box {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 250px;
+        transform: translate(-50%, -50%);
+        background: $white;
+        box-shadow: 0 0 60px 0px rgba(0,0,0,0.5);
+        padding: 20px;
+        @include flex(column, flex-start, center);
+    
+        .Message-Box__Title {
+            color: $dark;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .Message-Box__Text {
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .Message-Box__Button {
+            padding: 5px 10px;
+            border: 1px solid transparent;
+        }
+
+        .Message-Box__Button_Ok {
+            color: $white;
+            background: $cobalt;
+        }
+    }
+}

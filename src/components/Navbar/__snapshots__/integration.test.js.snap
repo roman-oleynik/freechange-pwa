@@ -1,0 +1,100 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`integrational tests of Navbar should render 'DropdownMenu' component after a click on the 'UserMenuToggleButton' and hide it after the next click. 1`] = `
+<button
+  className="Navbar__User-Menu"
+  onClick={[Function]}
+>
+  <div
+    className="Navbar__User-Menu-Avatar-Container"
+    style={
+      Object {
+        "background": "url(url) no-repeat center top / cover",
+      }
+    }
+  />
+  <span
+    className="Navbar__User-Menu-Name"
+  >
+    Roman Oleynik
+  </span>
+</button>
+`;
+
+exports[`integrational tests of Navbar should render 'DropdownMenu' component after a click on the 'UserMenuToggleButton' and hide it after the next click. 2`] = `
+<button
+  className="Navbar__User-Menu"
+  onClick={[Function]}
+>
+  <div
+    className="Navbar__User-Menu-Avatar-Container"
+    style={
+      Object {
+        "background": "url(url) no-repeat center top / cover",
+      }
+    }
+  />
+  <span
+    className="Navbar__User-Menu-Name"
+  >
+    Roman Oleynik
+  </span>
+  <div
+    className="User-Dropdown-Menu"
+  >
+    <nav>
+      <ul
+        className="User-Dropdown-Menu__Navigation-List"
+      >
+        <a
+          aria-current={null}
+          className="User-Dropdown-Menu__Navigation-List-Item"
+          href="/profile"
+          onClick={[Function]}
+        >
+          Profile
+        </a>
+        <a
+          aria-current={null}
+          className="User-Dropdown-Menu__Navigation-List-Item"
+          href="/settings"
+          onClick={[Function]}
+        >
+          Settings
+        </a>
+        <li
+          className="User-Dropdown-Menu__Navigation-List-Item"
+        >
+          <button
+            className="User-Dropdown-Menu__Log-Out"
+            onClick={[Function]}
+          >
+            Log Out
+          </button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</button>
+`;
+
+exports[`integrational tests of Navbar should render 'DropdownMenu' component after a click on the 'UserMenuToggleButton' and hide it after the next click. 3`] = `
+<button
+  className="Navbar__User-Menu"
+  onClick={[Function]}
+>
+  <div
+    className="Navbar__User-Menu-Avatar-Container"
+    style={
+      Object {
+        "background": "url(url) no-repeat center top / cover",
+      }
+    }
+  />
+  <span
+    className="Navbar__User-Menu-Name"
+  >
+    Roman Oleynik
+  </span>
+</button>
+`;

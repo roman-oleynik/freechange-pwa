@@ -1,0 +1,33 @@
+@import './variables.scss';
+
+.Offset-From-Header {
+    padding-top: $navbar-height-px;
+}
+.Invisible-Checkbox {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    opacity: 0;
+    overflow: hidden;
+}
+.Button {
+    height: $button-height-px;
+    width: $button-width-px;
+    @include flex(row, center, center);
+    border-radius: $button-height-px / 2;
+    text-align: center;
+    font-size: $small-fz-px;
+    color: $white;
+    border: 0;
+}
+.Corner-Button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+}
+
+@media (min-width: 1200px) {
+    .Offset-From-Header {
+        padding-top: $navbar-height-vw;
+    }
+}

@@ -1,0 +1,40 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+.Things-Container {
+    @include flex(column);
+
+    .absolute {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    }
+
+    .bubble-enter,
+    .bubble-appear {
+        opacity: 0;
+        transform: translateY(20%);
+    }
+    .bubble-enter-active,
+    .bubble-appear-active {
+        opacity: 1;
+        transform: translateY(0%);
+        transition: all 500ms;
+    }
+    .bubble-exit {
+        opacity: 1;
+        transform: translateY(0%);
+    }
+    .bubble-exit-active {
+        opacity: 0;
+        transform: translateY(20%);
+        transition: all 250ms;
+    }
+}
+
+
+@media (min-width: 482px) {
+    .Things-Container {
+        @include flex(row, space-evenly, center, wrap);
+    }
+}

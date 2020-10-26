@@ -1,0 +1,58 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.User-Dropdown-Menu {
+    position: fixed;
+    top: $navbar-height-px;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    background: $dark;
+    z-index: 2;
+    @include flex(column, flex-start, center);
+    overflow-y: scroll;
+
+    .User-Dropdown-Menu__Title {
+        font-size: $large-fz-px;
+        line-height: 2 * $large-fz-px;
+        color: $white;
+    }
+
+    .User-Dropdown-Menu__Navigation-List {
+        @include flex(column, flex-start, center);
+        padding-top: 100px;
+        list-style: none;
+        .User-Dropdown-Menu__Navigation-List-Item {
+            color: $white;
+            font-size: $medium-fz-px;
+            line-height: 2 * $medium-fz-px;
+
+            .User-Dropdown-Menu__Log-Out {
+                background: transparent;
+                border: 0;
+                color: $white;
+            }
+        }
+    }
+}
+
+
+@media (min-width: 1200px) {
+    .User-Dropdown-Menu {
+        top: $navbar-height-vw;
+    
+        .User-Dropdown-Menu__Title {
+            font-size: $large-fz-vw;
+            line-height: 2 * $large-fz-vw;
+            color: $white;
+        }
+        .User-Dropdown-Menu__Navigation-List {
+            padding-top: 100 * 1vw / 12;
+
+            .User-Dropdown-Menu__Navigation-List-Item {
+                font-size: $medium-fz-vw;
+                line-height: 2 * $medium-fz-vw;
+            }
+        }
+    }
+}

@@ -1,0 +1,13 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+.Offline-Message-Toast {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background: $pink;
+    padding: 10px;
+    font-size: $small-fz-px;
+    text-align: center;
+    color: $white;
+}

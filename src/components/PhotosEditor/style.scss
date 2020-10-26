@@ -1,0 +1,16 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+@import '../../scss/reusable-classes.scss';
+
+.photos-editor-add {
+    position: relative;
+    width: 40px;
+    height: 40px;
+
+    .plus {
+        fill: #0F83FF;
+    }
+    &:hover > .plus {
+        fill: #fff;
+    }
+}

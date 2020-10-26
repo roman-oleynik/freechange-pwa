@@ -1,0 +1,15 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+@import '../../scss/reusable-classes.scss';
+
+.avatar-container {
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+    background: $lightgrey;
+    overflow: hidden;
+
+    .img-avatar {
+        height: 135%;
+    }
+}

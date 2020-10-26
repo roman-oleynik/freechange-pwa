@@ -1,0 +1,39 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+.Carousel__Image-Container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    @include flex(row, center, center);
+    .Carousel__Image_Preloader {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3);
+    }
+    .Carousel__Image_Image {
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .Carousel__Image-Container {
+        position: relative;
+        width: 100%;
+        height: 400px;
+        overflow: hidden;
+        @include flex(row, center, center);
+        .Carousel__Image_Preloader {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+        }
+        .Carousel__Image_Image {
+            width: auto;
+            height: 400px;
+        }
+    }
+}

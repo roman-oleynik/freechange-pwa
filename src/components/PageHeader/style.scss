@@ -1,0 +1,19 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+@import '../../scss/reusable-classes.scss';
+
+    
+.Page__Header {
+    position: relative;
+    background: $almost-white;
+
+    .Page__Back {
+        position: absolute;
+        left: 30px;
+        font-size: 14px;            
+    }
+    .Page__Title {
+        width: 150px;
+        font-size: 14px;
+    }
+}

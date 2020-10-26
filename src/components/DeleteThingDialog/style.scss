@@ -1,0 +1,58 @@
+@mixin flex($direction: row, $j-content: flex-start, $a-items:stretch) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $j-content;
+    align-items: $a-items;
+};
+
+$blue: #2f75ec;
+$red: #f63f45;
+
+.Background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: transparent;
+
+    .Dialog {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        box-shadow: 0 0 60px 0px rgba(0,0,0,0.5);
+        padding: 20px;
+        @include flex(column, flex-start, center);
+    
+        .Dialog__Title {
+            color: #000;
+            font-size: 20px;
+            line-height: 40px;
+            text-align: center;
+        }
+        .Popup-Action-Buttons {
+            padding: 10px;
+            width: 100%;
+            @include flex(row, center, center);
+            
+            .Dialog__Button {
+                padding: 5px 10px;
+                border: 1px solid transparent;
+            }
+
+            .Dialog__Button_Submit {
+                color: #fff;
+                background: $blue;
+            }
+
+            .Dialog__Button_Cancel {
+                color: $blue;
+                border: 1px solid $blue;
+                background: #fff;
+                margin-left: 20px;
+            }
+        }
+    }
+}

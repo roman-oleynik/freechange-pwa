@@ -1,0 +1,16 @@
+@import '../../scss/mixins.scss';
+@import '../../scss/variables.scss';
+
+
+
+.Add-Thing-Form__Content {
+    @include flex(row, center, center, wrap);
+    grid-gap: 2 * $side-padding-px;
+    
+    .Add-Thing-Form__Inputs {
+        min-width: $input-min-width;
+        max-width: $input-max-width;
+
+        @include flex(row, space-around, flex-start, wrap);
+    }
+}

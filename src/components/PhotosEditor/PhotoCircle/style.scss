@@ -1,0 +1,40 @@
+@import '../../../scss/mixins.scss';
+@import '../../../scss/variables.scss';
+
+
+
+.Photo-Container {
+    position: relative;
+    height: 40px;
+    width: 40px;
+    @include flex(row, center, center);
+
+    .delete-photo {
+        position: absolute;
+        top: -6px;
+        right: -6px;
+        height: 20px;
+        width: 20px;
+        margin: 0;
+        padding: 0;
+    }
+    .cross {
+        height: 10px;
+        width: 10px;
+        transform: rotate(45deg);
+        fill: white;
+        pointer-events: none;
+    }
+    .Crop-Image {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        @include flex(row, center, center);
+        overflow: hidden;
+    
+        .Photo {
+            width: 150%;
+        }
+    
+    }
+}
