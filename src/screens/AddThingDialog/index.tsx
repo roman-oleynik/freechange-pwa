@@ -53,7 +53,7 @@ export function AddThingDialog() {
         EO.preventDefault();
 
         setFormState(FormState.Submitting);
-        await dispatch(requestAddingThing(payload, tempPhotos))
+        await dispatch(requestAddingThing(payload))
         setFormState(FormState.Submitted);
         if (tempPhotos.length) {
             const photosURLs: Photo[] | undefined = await STORAGE.addPhotosOfThing(tempPhotos);
@@ -76,8 +76,8 @@ export function AddThingDialog() {
         setTempPhotos(filteredTempPhotos);
     };
 
-    const changeAvatarInPayload = (src: string) => {
-        setPayload({...payload, avatar: src});
+    const changeAvatarInPayload = (src: string | Blob) => {
+        setPayload({...payload, avatar: src as string });
     };
 
     if ( formState === FormState.Submitted ) {
@@ -93,7 +93,7 @@ export function AddThingDialog() {
         <div className="Add-Thing-Form__Content px-3">
             <div className="Add-Thing-Form__Editors">
                 <AvatarEditor
-                    avatarSrc={payload.avatar}
+                    avatarSrc={payload.avatar instanceof Blob ? URL.createObjectURL(payload.avatar) : payload.avatar}
                     changeAvatar={changeAvatarInPayload}
                     clearAvatar={() => setPayload({...payload, avatar: ""})}
                 />

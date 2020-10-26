@@ -26,7 +26,7 @@ function PhotosCarousel({ photos }: Props) {
           photos.length
           ?
           <ImageContainer
-            imageSrc={photos[page].source}
+            imageSrc={photos[page].source as string}
           />
           :
           <div className="Carousel__Empty-Space">No photos</div>

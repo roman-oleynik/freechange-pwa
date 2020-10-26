@@ -6,7 +6,7 @@ export type Thing = {
     id: string,
     name: string,
     description: string,
-    avatar: string,
+    avatar: string | Blob,
     rel_Owner: string,
     price: number,
     currency: string,
@@ -24,7 +24,7 @@ export type Owner = {
 export type Photo = {
     id: string,
     key: string,
-    source: string,
+    source: string | Blob,
     rel_Thing: string
 };
 export enum FormState {

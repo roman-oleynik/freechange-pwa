@@ -1,9 +1,10 @@
 import React from 'react';
+import imageCompression from 'browser-image-compression';
 import './style.scss';
 
 type Props = {
     avatarSrc: string
-    changeAvatar: (src: string) => void
+    changeAvatar: (src: string | Blob) => void
     clearAvatar: () => void
 }
 export const AvatarEditor = ({ avatarSrc, changeAvatar, clearAvatar }: Props) => {
@@ -12,14 +13,16 @@ export const AvatarEditor = ({ avatarSrc, changeAvatar, clearAvatar }: Props) =>
     const hasPictureFormat = /\.(jpe?g|png|gif)$/i.test(file.name);
 
     if (file && hasPictureFormat) {
-      var reader = new FileReader();
-      reader.readAsDataURL(file);
-
-      reader.onload = () => changeAvatar(reader.result as string);
-
-      reader.onerror = () => {
-        console.log(reader.error);
+      const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 500,
+        useWebWorker: true
       };
+      imageCompression(file, options)
+        .then((img: Blob) => changeAvatar(img))
+        .catch(err => console.log(err));
+    } else {
+      // Message toast
     }
   }
   return (

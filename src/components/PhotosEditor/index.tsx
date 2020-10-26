@@ -1,8 +1,8 @@
 import React, { forwardRef } from 'react';
 import { generateId } from '../../modules/generateId';
-import { readImagesFromFileInput } from '../../modules/readImageFromFileInput';
 import { Photo } from '../../types/types';
 import { PhotoCircle } from './PhotoCircle';
+import imageCompression from 'browser-image-compression';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.scss';
 
@@ -23,20 +23,43 @@ export const PhotosEditor = ({ photos, deletePhoto, addPhotos, rel_Thing }: Prop
             deletePhoto(id, key);
         }
     };
-    const handlePhotosInputChange = (EO: React.ChangeEvent<HTMLInputElement>) => {
+    const handlePhotosInputChange = async (EO: React.ChangeEvent<HTMLInputElement>) => {
         const files = EO.target.files && EO.target.files;
         const loadedPhotos: Photo[] = [];
 
-        readImagesFromFileInput(files, function onSuccess(reader: FileReader) {
-            const id = generateId();
-            loadedPhotos.push({
-                id,
-                key: id,
-                source: reader.result as string,
-                rel_Thing,
-            })
-            addPhotos(loadedPhotos, );
-        })
+        if (files) {
+            for (const file of files) {
+                await readAndPreview(file);
+            }
+        }
+        async function readAndPreview(file: File) {
+            const hasPictureFormat = /\.(jpe?g|png|gif)$/i.test(file.name);
+    
+            if ( hasPictureFormat ) {
+                const options = {
+                    maxSizeMB: 1,
+                    maxWidthOrHeight: 500,
+                    useWebWorker: true
+                };
+                try {
+                    const img: Blob = await imageCompression(file, options)
+                    const id = generateId();
+                    loadedPhotos.push({
+                        id,
+                        key: id,
+                        source: img,
+                        rel_Thing,
+                    })
+                }
+                catch (err) {
+                    console.log(err);
+                }
+            } else {
+                // Message Toast
+            }
+        }
+        console.log(loadedPhotos);
+        addPhotos(loadedPhotos);
     };
     return (
         <section className="container border-top border-secondary py-1 px-0">

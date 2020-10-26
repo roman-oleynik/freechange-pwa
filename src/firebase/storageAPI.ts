@@ -5,10 +5,10 @@ import { Photo } from "../types/types";
 import { storage } from "./firebaseConfig";
 
 interface IStorage {
-    addAvatarOfThing: (key: string, src: string) => Promise<string>
-    editAvatarOfThing: (key: string, src: string) => Promise<string>
+    addAvatarOfThing: (key: string, src: string | Blob) => Promise<string>
+    editAvatarOfThing: (key: string, src: string | Blob) => Promise<string>
     deleteAvatarOfThing: (key: string) => Promise<void>
-    addAvatarOfOwner: (key: string, src: string) => Promise<string>
+    addAvatarOfOwner: (key: string, src: string | Blob) => Promise<string>
     deleteAvatarOfOwner: (key: string) => Promise<void>
     addPhotosOfThing: (photos: Photo[]) => Promise<Photo[] | undefined>
     deletePhoto: (key: string) => Promise<void>
@@ -17,10 +17,12 @@ interface IStorage {
 
 export const STORAGE: IStorage = {
     addAvatarOfThing: async (key, src) => {
-        if ( isURL(src) ) {
+        if ( !(src instanceof Blob) ) {
             return src;
         }
-        await storage.ref(`/avatars/${key}`).putString(src, "data_url");
+        await storage.ref(`/avatars/${key}`).put(src, {
+            contentType: 'image/jpeg'
+        });
         return storage.ref('avatars').child(key).getDownloadURL();
     },
 
@@ -31,11 +33,12 @@ export const STORAGE: IStorage = {
     deleteAvatarOfThing: async (key) => await storage.ref(`/avatars/${key}`).delete(),
 
     addAvatarOfOwner: async (key, src) => {
-        if ( isURL(src) ) {
+        if ( !(src instanceof Blob) ) {
             return src;
         }
-        
-        await storage.ref(`/userAvatars/${key}`).putString(src, "data_url");
+        await storage.ref(`/userAvatars/${key}`).put(src, {
+            contentType: 'image/jpeg'
+        });
         return storage.ref('userAvatars').child(key).getDownloadURL();
     },
 
@@ -48,8 +51,11 @@ export const STORAGE: IStorage = {
         const uploadedPhotos: Photo[] = [];
         
         for (let photo of photos) {
-            if ( !isURL(photo.source) ) {
-                await storage.ref(`/photos/${photo.key}`).putString(photo.source, "data_url");
+            if ( photo.source instanceof Blob ) {
+                console.log(photo);
+                await storage.ref(`/photos/${photo.key}`).put(photo.source, {
+                    contentType: 'image/jpeg'
+                });
                 const downloadURL = await storage.ref('photos').child(photo.key).getDownloadURL();
                 photo.source = downloadURL;
                 uploadedPhotos.push(photo);

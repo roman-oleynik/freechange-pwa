@@ -54,7 +54,7 @@ export default function ThingItem({ data, children }: Props) {
                     <img 
                         ref={imageRef} 
                         className="Thing-Item__Photo" 
-                        src={data.avatar} 
+                        src={data.avatar instanceof Blob ? URL.createObjectURL(data.avatar) : data.avatar} 
                         alt="Thing"
                     />
                 </NavLink>

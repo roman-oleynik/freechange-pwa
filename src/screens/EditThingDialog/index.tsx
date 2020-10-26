@@ -71,7 +71,7 @@ function EditThingDialog(props: Props) {
         EO.preventDefault();
 
         setFormState(FormState.Submitting);
-        await dispatch(requestEditingThing(payload, tempPhotos));
+        await dispatch(requestEditingThing(payload));
         setFormState(FormState.Submitted);
         if (tempPhotos.length) {
             const photosURLs: Photo[] | undefined = await STORAGE.addPhotosOfThing(tempPhotos);
@@ -102,8 +102,8 @@ function EditThingDialog(props: Props) {
             STORAGE.deletePhoto(id);
         }  
     };
-    const changeAvatarInPayload = (src: string) => {
-        setPayload({...payload, avatar: src});
+    const changeAvatarInPayload = (src: string | Blob) => {
+        setPayload({...payload, avatar: src as string});
         STORAGE.deleteAvatarOfThing(payload.id);
     };
 
@@ -120,14 +120,14 @@ function EditThingDialog(props: Props) {
         return <Redirect to="/" />
     }
     return (
-        <Dialog 
+        <Dialog
             title="Изменить вещь"
             onSubmit={processFormData}
         >
             <div className="Edit-Thing-Form__Content px-3">
                 <div className="Edit-Thing-Form__Editors">
                     <AvatarEditor
-                        avatarSrc={payload.avatar}
+                        avatarSrc={payload.avatar instanceof Blob ? URL.createObjectURL(payload.avatar) : payload.avatar}
                         changeAvatar={changeAvatarInPayload}
                         clearAvatar={deleteAvatarFromPayload}
                     />

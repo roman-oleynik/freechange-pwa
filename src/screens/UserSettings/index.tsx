@@ -43,8 +43,8 @@ function UserSettings() {
         avatar: ""
     });
 
-    const changeAvatar = (src: string) => {
-        setPayload({...payload, avatar: src});
+    const changeAvatar = (src: string | Blob) => {
+        setPayload({...payload, avatar: src as string});
     };
     const clearAvatar = () => {
         setPayload({...payload, avatar: DEFAULT_AVATAR_PATH});

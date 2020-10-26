@@ -52,7 +52,7 @@ export function fetchThingsOfUser(userId: string) {
 };
 
 
-export function requestAddingThing(payload: Thing, photosOfThing: Photo[]) {
+export function requestAddingThing(payload: Thing) {
     return async (dispatch: ThunkDispatch<{}, {}, Action>) => {
         if (payload.avatar) {
             const avatarUrl: string = await STORAGE.addAvatarOfThing(payload.id, payload.avatar);
@@ -63,7 +63,7 @@ export function requestAddingThing(payload: Thing, photosOfThing: Photo[]) {
     }
 }
 
-export function requestEditingThing(payload: Thing, photosOfThing: Photo[]) {
+export function requestEditingThing(payload: Thing) {
     return async (dispatch: ThunkDispatch<{}, {}, Action>) => {
         if (payload.avatar) {
             const avatarUrl: string = await STORAGE.editAvatarOfThing(payload.id, payload.avatar);

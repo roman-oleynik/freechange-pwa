@@ -12,7 +12,11 @@ type PhotoProps = {
 export function PhotoCircle({data, deleteTempPhoto}: PhotoProps) {
     return <div className="Photo-Container mx-2 my-2" key={data.id}>
         <div className="Crop-Image rounded-circle">
-            <img src={data.source} className="Photo" alt="Avatar"/>
+            <img
+                src={data.source instanceof Blob ? URL.createObjectURL(data.source) : data.source}
+                className="Photo"
+                alt="Avatar"
+            />
         </div>
         <button
             type="button"
