@@ -86,21 +86,21 @@ self.addEventListener('fetch', (event) => {
         .catch(err => (caches.match(event.request).then(res => res)) as Promise<Response>)
     );
   }
-  // if (event.request.url.startsWith('https://firebasestorage.googleapis.com')) {
-  //   const cacheName = "thingsAvatars";
-  //   event.respondWith(
-  //     fetch(event.request)
-  //       .then((res) => {
-  //         const cloneOfRes = res.clone();
-  //         caches.open(cacheName)
-  //           .then(cache => {
-  //             cache.put(event.request, cloneOfRes)
-  //           });
-  //         return res;
-  //       })
-  //       .catch(err => (caches.match(event.request).then(res => res)) as Promise<Response>)
-  //   );
-  // }
+  if (event.request.url.startsWith('https://firebasestorage.googleapis.com')) {
+    const cacheName = "thingsAvatars";
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          const cloneOfRes = res.clone();
+          caches.open(cacheName)
+            .then(cache => {
+              cache.put(event.request, cloneOfRes)
+            });
+          return res;
+        })
+        .catch(err => (caches.match(event.request).then(res => res)) as Promise<Response>)
+    );
+  }
 });
 registerRoute(
   ({url}) => url.origin === 'https://fonts.googleapis.com' ||
