@@ -33,27 +33,12 @@ import 'normalize.css';
 export function App({ location }: any) {
   const dispatch = useDispatch();
 
-  const isOnline = useSelector((state: State) => state.isOnline); 
-  
   useEffect(() => {
-    const loggedOwnerId: string | null = getLocalStorageItem("loggedUser");    
+    const loggedOwnerId: string | null = getLocalStorageItem("loggedUser");
     if (loggedOwnerId ) {
       dispatch(fetchLoggedOwner(loggedOwnerId));
     }
-  }, [isOnline]);
-
-  useEffect(() => {
-    const connectedRef = database.ref(".info/connected");
-    connectedRef.on("value", (snap) => {
-      if (snap.val() === true) {
-        dispatch(setOnlineStatus(true));
-      } else {
-        dispatch(setOnlineStatus(false));
-      }
-    });
-  }, [isOnline]);
-  console.log(location)
-  if (isOnline) {
+  }, []);
     return (
       <>
         <header>
@@ -78,9 +63,6 @@ export function App({ location }: any) {
         </main>
       </>
     );
-  } else {
-    return <BusyIndicator />
-  }
 }
 
 
