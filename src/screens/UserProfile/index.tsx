@@ -85,7 +85,7 @@ function UserProfile() {
 				<div className="d-flex flex-column justify-content-flex-start align-items-center">
 					<div className="pb-3">
 						<Avatar
-							source={loggedOwner.avatar}
+							source={loggedOwner.avatar instanceof Blob ? URL.createObjectURL(loggedOwner.avatar) : loggedOwner.avatar}
 							size={260}
 						/>
 					</div>

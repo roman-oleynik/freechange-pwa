@@ -59,7 +59,7 @@ function OwnerPage(props: Props) {
 			<div className="container-fluid d-flex flex-column align-items-center">
 				<div className="pt-3">
 					<Avatar
-						source={owner.avatar}
+						source={owner.avatar instanceof Blob ? URL.createObjectURL(owner.avatar) : owner.avatar}
 						size={260}
 					/>
 				</div>

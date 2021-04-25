@@ -46,10 +46,11 @@ function UserSettings() {
     const changeAvatar = (src: string | Blob) => {
         setPayload({...payload, avatar: src as string});
     };
+
     const clearAvatar = () => {
         setPayload({...payload, avatar: DEFAULT_AVATAR_PATH});
         STORAGE.deleteAvatarOfOwner(payload.id);
-    }
+    };
    
     useEffect(() => {
         setPayload(loggedOwner as Owner);
@@ -85,7 +86,7 @@ function UserSettings() {
         return <BusyIndicator />;
     }
     if ( formState === FormState.Submitted ) {
-        return <Redirect to="/profile" /> 
+        return <Redirect to="/profile" />
     }
     return <Dialog
         title="Изменить профиль"
@@ -94,7 +95,7 @@ function UserSettings() {
         <div className="User-Settings__Content px-3">
             <div className="User-Settings__Editors">
                 <AvatarEditor
-                    avatarSrc={payload.avatar}
+                    avatarSrc={payload.avatar instanceof Blob ? URL.createObjectURL(payload.avatar) : payload.avatar}
                     changeAvatar={changeAvatar}
                     clearAvatar={clearAvatar}
                 />

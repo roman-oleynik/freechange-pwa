@@ -19,7 +19,7 @@ export type Owner = {
     email: string,
     location: string
     phoneNumber: string,
-    avatar: string
+    avatar: string | Blob
 };
 export type Photo = {
     id: string,
